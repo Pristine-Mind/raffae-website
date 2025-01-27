@@ -22,11 +22,22 @@ const ProductShowcase: React.FC = () => {
                 component="img"
                 src={product.img}
                 alt={product.name}
-                sx={{ width: '100%', height: 'auto', marginBottom: 2 }}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  marginBottom: 2,
+                  // Transition for smooth zoom
+                  transition: 'transform 0.3s ease-in-out',
+                  // On hover, scale up (zoom in)
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  },
+                }}
               />
-              <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                 {product.name}
               </Typography>
+
             </Box>
           </Grid>
         ))}
