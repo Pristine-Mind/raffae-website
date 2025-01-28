@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Components
 import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/HeroSection/HeroSection';
 import ProductShowcase from './components/ProductShowcase/ProductShowcase';
@@ -7,19 +10,39 @@ import AboutSection from './components/AboutSection/AboutSection';
 import ProductTabs from './components/ProductTabs/ProductTabs';
 import PromoBanners from './components/PromoBanners/PromoBanners';
 import MultiReviewSection from './components/MultiReviewSection/MultiReviewSection';
+import Shop from './components/Shop/Shop';
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <>
-      <Navbar />
       <HeroSection />
       <ProductShowcase />
       <AboutSection />
       <ProductTabs />
       <PromoBanners />
       <MultiReviewSection />
-      <Footer />
     </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/shop"
+          element={<Shop />}
+        />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
   );
 };
 

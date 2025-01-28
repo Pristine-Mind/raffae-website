@@ -9,6 +9,9 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// React Router Link
+import { Link } from 'react-router-dom';
+
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
@@ -78,12 +81,28 @@ const Navbar: React.FC = () => {
           gap: 4,
         }}
       >
-        <Typography variant="body1" sx={{ cursor: 'pointer', color: '#555' }}>
+        {/* Link to Home */}
+        <Typography
+          variant="body1"
+          sx={{ cursor: 'pointer', color: '#555' }}
+          component={Link}
+          to="/"
+          style={{ textDecoration: 'none' }} // remove underline
+        >
           Home
         </Typography>
-        <Typography variant="body1" sx={{ cursor: 'pointer', color: '#555' }}>
+
+        {/* Link to Shop */}
+        <Typography
+          variant="body1"
+          sx={{ cursor: 'pointer', color: '#555' }}
+          component={Link}
+          to="/shop"
+          style={{ textDecoration: 'none' }}
+        >
           Shop
         </Typography>
+
         <Typography variant="body1" sx={{ cursor: 'pointer', color: '#555' }}>
           Collection
         </Typography>
