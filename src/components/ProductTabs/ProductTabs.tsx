@@ -12,6 +12,7 @@ import {
   styled,
 } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import car_charger from '../../assets/car_charger.webp';
 import earbuds from '../../assets/earbuds.webp';
@@ -105,7 +106,7 @@ const DiscountBadge = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: theme.spacing(1),
   right: theme.spacing(1),
-  color: '#bc9a64', 
+  color: '#bc9a64',
   fontWeight: 'bold',
   textAlign: 'right',
 }));
@@ -116,18 +117,15 @@ const ProductCard = styled(Card)(() => ({
   borderRadius: 0,
   backgroundColor: '#f9f9f9',
   transition: 'transform 0.3s ease-in-out',
-
   display: 'flex',
   flexDirection: 'column',
   height: '400px',
 
-  // Slight lift on hover
   '&:hover': {
     transform: 'translateY(-4px)',
     boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
   },
 }));
-
 
 const ImageContainer = styled(Box)(() => ({
   position: 'relative',
@@ -147,24 +145,21 @@ const StyledCardMedia = styled(CardMedia)(() => ({
   },
 }));
 
-function TabPanel(props: {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}) {
-  const { children, value, index, ...other } = props;
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
-    </Box>
-  );
-}
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const MotionProductCard = motion(ProductCard);
+
 
 function a11yProps(index: number) {
   return {
@@ -172,6 +167,7 @@ function a11yProps(index: number) {
     'aria-controls': `tabpanel-${index}`,
   };
 }
+
 
 const ProductTabs: React.FC = () => {
   const [value, setValue] = React.useState(0);
@@ -181,15 +177,30 @@ const ProductTabs: React.FC = () => {
   };
 
   const renderProducts = (products: Product[]) => (
-    <Grid container spacing={3}>
+    <Grid
+      container
+      spacing={3}
+      component={motion.div}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-          <ProductCard>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          key={product.id}
+          component={motion.div}
+          variants={itemVariants}
+        >
+          <MotionProductCard whileHover={{ scale: 1.05 }}>
             <DiscountBadge>
               <div>{product.discount}</div>
               {product.isNew && <div>New</div>}
             </DiscountBadge>
-
             <ImageContainer>
               <StyledCardMedia
                 component="img"
@@ -197,7 +208,6 @@ const ProductTabs: React.FC = () => {
                 alt={product.name}
               />
             </ImageContainer>
-
             <CardContent sx={{ textAlign: 'left' }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
@@ -207,7 +217,6 @@ const ProductTabs: React.FC = () => {
                   <FavoriteBorderIcon fontSize="small" />
                 </IconButton>
               </Box>
-
               <Typography variant="body1" sx={{ fontWeight: 'bold', color: '#333' }}>
                 {product.newPrice}{' '}
                 <Typography
@@ -223,7 +232,7 @@ const ProductTabs: React.FC = () => {
                 </Typography>
               </Typography>
             </CardContent>
-          </ProductCard>
+          </MotionProductCard>
         </Grid>
       ))}
     </Grid>
@@ -231,7 +240,6 @@ const ProductTabs: React.FC = () => {
 
   return (
     <Box sx={{ maxWidth: 1200, margin: '0 auto', py: 5 }}>
-      {/* Tabs header */}
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
         <Tabs value={value} onChange={handleChange} centered>
           <Tab label="New Arrivals" {...a11yProps(0)} />
@@ -240,16 +248,38 @@ const ProductTabs: React.FC = () => {
         </Tabs>
       </Box>
 
-      {/* Tab panels */}
-      <TabPanel value={value} index={0}>
-        {renderProducts(newArrivals)}
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        {renderProducts(bestSellers)}
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        {renderProducts(saleItems)}
-      </TabPanel>
+      <AnimatePresence exitBeforeEnter>
+        {value === 0 && (
+          <motion.div
+            key="newArrivals"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            {renderProducts(newArrivals)}
+          </motion.div>
+        )}
+        {value === 1 && (
+          <motion.div
+            key="bestSellers"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            {renderProducts(bestSellers)}
+          </motion.div>
+        )}
+        {value === 2 && (
+          <motion.div
+            key="saleItems"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            {renderProducts(saleItems)}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Box>
   );
 };

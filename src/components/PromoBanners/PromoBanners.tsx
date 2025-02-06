@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, Box, Typography, IconButton } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
 import headphoneImg from '../../assets/wireless_headphone.webp';
 import bluetoothImg from '../../assets/earbuds.webp';
@@ -16,12 +17,18 @@ const BannerBox = styled(Box)(() => ({
   padding: '2rem',
 }));
 
+const MotionBannerBox = motion(BannerBox);
+
 const PromoBanners: React.FC = () => {
   return (
     <Box sx={{ maxWidth: 1200, margin: '0 auto', py: 4 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
-          <BannerBox>
+          <MotionBannerBox
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Typography
                 variant="h3"
@@ -46,11 +53,15 @@ const PromoBanners: React.FC = () => {
                 height: 'auto',
               }}
             />
-          </BannerBox>
+          </MotionBannerBox>
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <BannerBox>
+          <MotionBannerBox
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <Box
               component="img"
               src={bluetoothImg}
@@ -82,7 +93,7 @@ const PromoBanners: React.FC = () => {
                 Starting at <span style={{ color: '#8C4E3A' }}>NPR79.00</span>
               </Typography>
             </Box>
-          </BannerBox>
+          </MotionBannerBox>
         </Grid>
       </Grid>
     </Box>

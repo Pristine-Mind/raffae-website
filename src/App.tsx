@@ -11,6 +11,7 @@ import ProductTabs from './components/ProductTabs/ProductTabs';
 import PromoBanners from './components/PromoBanners/PromoBanners';
 import MultiReviewSection from './components/MultiReviewSection/MultiReviewSection';
 import Shop from './components/Shop/Shop';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 const Home: React.FC = () => {
   return (
@@ -39,6 +40,7 @@ const App: React.FC = () => {
           path="/shop"
           element={<Shop />}
         />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
 
       <Footer />
