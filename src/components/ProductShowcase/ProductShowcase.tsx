@@ -43,7 +43,8 @@ const ProductShowcase: React.FC = () => {
           <Grid
             item
             xs={12}
-            sm={4}
+            sm={6}
+            md={4}
             key={product.id}
             component={motion.div}
             variants={itemVariants}
@@ -53,6 +54,7 @@ const ProductShowcase: React.FC = () => {
                 component={motion.img}
                 src={product.img}
                 alt={product.name}
+                loading="lazy"
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -60,9 +62,11 @@ const ProductShowcase: React.FC = () => {
                   width: '100%',
                   height: 'auto',
                   marginBottom: 2,
+                  borderRadius: 2,
+                  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
                 }}
               />
-              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="subtitle1" component="h2" sx={{ fontWeight: 'bold' }}>
                 {product.name}
               </Typography>
             </Box>

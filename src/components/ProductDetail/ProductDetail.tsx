@@ -68,8 +68,8 @@ function a11yProps(index: number) {
 const ProductDetail: React.FC = () => {
   const product = {
     name: 'Lorem ipsum jacket',
-    newPrice: '€11.2',
-    oldPrice: '€12.45',
+    newPrice: 'NPR11.2',
+    oldPrice: 'NPR12.45',
     discount: '-10%',
     rating: 4,
     description:

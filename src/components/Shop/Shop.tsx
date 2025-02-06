@@ -49,8 +49,8 @@ const products: Product[] = [
       'A stylish jacket made from high-quality materials, perfect for all seasons.',
     discount: '-10%',
     rating: 4,
-    newPrice: '€11.2',
-    oldPrice: '€12.45',
+    newPrice: 'NPR11.2',
+    oldPrice: 'NPR12.45',
   },
   {
     id: 2,
@@ -60,8 +60,8 @@ const products: Product[] = [
       'Elegant coat designed to keep you warm and fashionable during the colder months.',
     discount: '-15%',
     rating: 2,
-    newPrice: '€15.72',
-    oldPrice: '€18.5',
+    newPrice: 'NPR15.72',
+    oldPrice: 'NPR18.5',
   },
   {
     id: 3,
@@ -72,8 +72,8 @@ const products: Product[] = [
     discount: '-40%',
     isNew: true,
     rating: 3,
-    newPrice: '€10.47',
-    oldPrice: '€17.45',
+    newPrice: 'NPR10.47',
+    oldPrice: 'NPR17.45',
   },
 ];
 
