@@ -1,92 +1,78 @@
 import React from 'react';
-import { Box, Typography, Grid, Icon } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+// Import local images from the `assets` folder
+import avatar1 from '../../assets/avatar.jpg';
+import avatar2 from '../../assets/avatar.jpg';
 
 interface Review {
   id: number;
   text: string;
   name: string;
   role: string;
+  avatar: string;
 }
 
+// Provide the imported avatar files to each review
 const reviewsData: Review[] = [
   {
     id: 1,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore.',
+    text: 'Lorem ipsum dolor sit amet...',
     name: 'Grace Alvarado',
     role: 'Customer',
+    avatar: avatar1, // Using the imported asset
   },
   {
     id: 2,
-    text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco. Duis aute irure dolor in reprehenderit.',
+    text: 'Ut enim ad minim veniam...',
     name: 'John Doe',
     role: 'Client',
-  },
-  {
-    id: 3,
-    text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    name: 'Jane Smith',
-    role: 'Buyer',
+    avatar: avatar2, // Another imported asset
   },
 ];
 
-const ReviewSectionContainer = styled(Box)(() => ({
-  backgroundColor: '#f9f9f9',
-  padding: '4rem 0',
-  textAlign: 'center',
-}));
-
-const SingleReviewBox = styled(Box)(() => ({
-  backgroundColor: '#fff',
-  borderRadius: 4,
-  padding: '2rem',
-  boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
-  transition: '0.3s',
-  '&:hover': {
-    boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
-  },
-}));
-
-// Decorative icon (e.g., a quote symbol)
-const DecorativeIcon = styled(Icon)(() => ({
-  fontSize: '2rem',
-  color: '#999',
+const AvatarImage = styled('img')({
+  width: 70,
+  height: 70,
+  borderRadius: '50%',
+  objectFit: 'cover',
   marginBottom: '1rem',
-  borderRadius: '2px',
-}));
+});
 
 const MultiReviewSection: React.FC = () => {
   return (
-    <ReviewSectionContainer>
-      <Box sx={{ maxWidth: 1000, margin: '0 auto', px: 2 }}>
-        <Typography variant="h4" sx={{ mb: 4, fontWeight: 800}}>
-          What Our Customers Say
-        </Typography>
+    <Box sx={{ p: 4 }}>
+      <Typography variant="h4" sx={{ mb: 4 }} color='#FFBF00' align="center">
+        Our Customers
+      </Typography>
 
-        <Grid container spacing={4}>
-          {reviewsData.map((review) => (
-            <Grid item xs={12} md={4} key={review.id}>
-              <SingleReviewBox>
-                <DecorativeIcon>format_quote</DecorativeIcon>
-                <Typography
-                  variant="body1"
-                  sx={{ color: '#555', mb: 2, lineHeight: 1.7 }}
-                >
-                  {review.text}
-                </Typography>
+      <Grid container spacing={4}>
+        {reviewsData.map((review) => (
+          <Grid item xs={12} sm={6} md={4} key={review.id}>
+            <Box
+              sx={{
+                backgroundColor: '#fff',
+                p: 3,
+                borderRadius: 2,
+                boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
+              }}
+            >
+              {/* Use the imported image file */}
+              <AvatarImage src={review.avatar} alt={review.name} />
 
-                <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
-                  {review.name.toUpperCase()}
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#999' }}>
-                  {review.role}
-                </Typography>
-              </SingleReviewBox>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    </ReviewSectionContainer>
+              <Typography sx={{ mb: 1 }}>{review.text}</Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                {review.name}
+              </Typography>
+              <Typography variant="caption" sx={{ color: '#999' }}>
+                {review.role}
+              </Typography>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
