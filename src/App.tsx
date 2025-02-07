@@ -12,6 +12,9 @@ import PromoBanners from './components/PromoBanners/PromoBanners';
 import MultiReviewSection from './components/MultiReviewSection/MultiReviewSection';
 import Shop from './components/Shop/Shop';
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import Subscribe from './components/Subscribe/Subscribe';
+import ContactUs from './components/ContactUs/ContactUs';
+import AboutUs from './components/AboutUs/AboutUs';
 
 const Home: React.FC = () => {
   return (
@@ -22,6 +25,7 @@ const Home: React.FC = () => {
       <ProductTabs />
       <PromoBanners />
       <MultiReviewSection />
+      <Subscribe />
     </>
   );
 };
@@ -41,6 +45,8 @@ const App: React.FC = () => {
           element={<Shop />}
         />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path='/contact-us' element={<ContactUs />} />
+        <Route path='/about-us' element={<AboutUs />} />
       </Routes>
 
       <Footer />

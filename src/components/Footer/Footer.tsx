@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
             <Link href="#" color="inherit" underline="hover" sx={{ display: 'block', mb: 1 }}>
               Products
             </Link>
-            <Link href="#" color="inherit" underline="hover" sx={{ display: 'block', mb: 1 }}>
+            <Link href="/about-us" color="inherit" underline="hover" sx={{ display: 'block', mb: 1 }}>
               About Us
             </Link>
             <Link href="#" color="inherit" underline="hover" sx={{ display: 'block', mb: 1 }}>

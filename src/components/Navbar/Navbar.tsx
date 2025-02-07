@@ -102,11 +102,13 @@ const Navbar: React.FC = () => {
         >
           Shop
         </Typography>
-
-        <Typography variant="body1" sx={{ cursor: 'pointer', color: '#555' }}>
-          Collection
-        </Typography>
-        <Typography variant="body1" sx={{ cursor: 'pointer', color: '#555' }}>
+        <Typography 
+          variant="body1"
+          sx={{ cursor: 'pointer', color: '#555' }}
+          component={Link}
+          to="/contact-us"
+          style={{ textDecoration: 'none' }}
+        >
           Contact Us
         </Typography>
       </Toolbar>
