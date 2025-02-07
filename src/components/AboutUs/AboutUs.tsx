@@ -86,7 +86,7 @@ const AboutUs: React.FC = () => {
             >
               <CardContent>
                 <Typography variant="h5" component="h3" sx={{ color: '#7D3C14', fontWeight: 'bold' }}>
-                  Watches
+                  Earbuds
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#444', mb: 2 }}>
                   Starting at <span style={{ color: '#7D3C14' }}>$99.00</span>
@@ -117,7 +117,7 @@ const AboutUs: React.FC = () => {
             >
               <CardContent>
                 <Typography variant="h5" component="h3" sx={{ color: '#7D3C14', fontWeight: 'bold' }}>
-                  Plo Bag
+                    Speaker
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#444', mb: 2 }}>
                   Starting at <span style={{ color: '#7D3C14' }}>$79.00</span>
@@ -148,7 +148,7 @@ const AboutUs: React.FC = () => {
             >
               <CardContent>
                 <Typography variant="h5" component="h3" sx={{ color: '#7D3C14', fontWeight: 'bold' }}>
-                  Sunglass
+                  Powerbank
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#444', mb: 2 }}>
                   Starting at <span style={{ color: '#7D3C14' }}>$29.00</span>

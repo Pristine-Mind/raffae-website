@@ -15,6 +15,8 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import Subscribe from './components/Subscribe/Subscribe';
 import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
+import Login from './components/Login';
+import Register from './components/Register';
 
 const Home: React.FC = () => {
   return (
@@ -47,6 +49,8 @@ const App: React.FC = () => {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/about-us' element={<AboutUs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
 
       <Footer />
