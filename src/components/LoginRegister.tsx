@@ -9,18 +9,9 @@ const LoginRegister: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const getTabIndexFromPath = (): number => {
-    return location.pathname === '/register' ? 1 : 0;
-  };
+  const activeTab = location.pathname === '/register' ? 1 : 0;
 
-  const [activeTab, setActiveTab] = React.useState<number>(getTabIndexFromPath());
-
-  React.useEffect(() => {
-    setActiveTab(getTabIndexFromPath());
-  }, [location]);
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setActiveTab(newValue);
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     navigate(newValue === 0 ? '/login' : '/register');
   };
 
@@ -51,7 +42,7 @@ const LoginRegister: React.FC = () => {
             fontSize: '1.2rem',
           }}
         />
-        <Divider orientation="vertical" flexItem sx={{ mx: 2 }}/>
+        <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
         <Tab
           label="Register"
           sx={{
@@ -65,8 +56,7 @@ const LoginRegister: React.FC = () => {
 
       <Divider sx={{ my: 3 }} />
 
-      {activeTab === 0 && <LoginForm />}
-      {activeTab === 1 && <RegisterForm />}
+      {activeTab === 0 ? <LoginForm /> : <RegisterForm />}
     </Box>
   );
 };
