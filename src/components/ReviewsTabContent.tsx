@@ -9,6 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import ReplyIcon from '@mui/icons-material/Reply';
+import { motion } from 'framer-motion';
 
 import avatar1 from '../assets/avatar.jpg';
 import avatar2 from '../assets/avatar.jpg';
@@ -44,6 +45,27 @@ const AvatarImg = styled('img')({
   marginRight: 16,
 });
 
+const reviewItemVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.5,
+    },
+  }),
+};
+
+const formVariant = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+};
+
+const MotionReviewItem = motion(ReviewItem);
+const MotionButton = motion(Button);
+const MotionGridItem = motion(Grid);
+
 const ReviewsTabContent: React.FC = () => {
   const [newRating, setNewRating] = useState<number | null>(5);
   const [name, setName] = useState('');
@@ -57,9 +79,15 @@ const ReviewsTabContent: React.FC = () => {
   return (
     <Box sx={{ mt: 2 }}>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={7}>
-          {mockReviews.map((review) => (
-            <ReviewItem key={review.id}>
+        {/* Reviews List */}
+        <MotionGridItem item xs={12} md={7} initial="hidden" animate="visible">
+          {mockReviews.map((review, index) => (
+            <MotionReviewItem
+              key={review.id}
+              custom={index}
+              variants={reviewItemVariant}
+              whileHover={{ scale: 1.02 }}
+            >
               <AvatarImg src={review.avatar} alt={review.name} />
 
               <Box sx={{ flex: 1 }}>
@@ -104,11 +132,18 @@ const ReviewsTabContent: React.FC = () => {
                   {review.text}
                 </Typography>
               </Box>
-            </ReviewItem>
+            </MotionReviewItem>
           ))}
-        </Grid>
+        </MotionGridItem>
 
-        <Grid item xs={12} md={5}>
+        <MotionGridItem
+          item
+          xs={12}
+          md={5}
+          initial="hidden"
+          animate="visible"
+          variants={formVariant}
+        >
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
             Add a Review
           </Typography>
@@ -160,19 +195,20 @@ const ReviewsTabContent: React.FC = () => {
               required
             />
 
-            <Button
+            <MotionButton
               variant="contained"
               sx={{
                 textTransform: 'none',
                 backgroundColor: '#b76aff',
                 '&:hover': { backgroundColor: '#a64eff' },
               }}
+              whileHover={{ scale: 1.05 }}
               onClick={handleSubmitReview}
             >
               SUBMIT QUERY
-            </Button>
+            </MotionButton>
           </Box>
-        </Grid>
+        </MotionGridItem>
       </Grid>
     </Box>
   );
