@@ -15,9 +15,11 @@ const BannerBox = styled(Box)(() => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '2rem',
+  cursor: 'pointer',
 }));
 
 const MotionBannerBox = motion(BannerBox);
+const MotionImage = motion(Box);
 
 const PromoBanners: React.FC = () => {
   return (
@@ -27,6 +29,7 @@ const PromoBanners: React.FC = () => {
           <MotionBannerBox
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -44,7 +47,7 @@ const PromoBanners: React.FC = () => {
               </Typography>
             </Box>
 
-            <Box
+            <MotionImage
               component="img"
               src={headphoneImg}
               alt="HeadPhone"
@@ -52,6 +55,7 @@ const PromoBanners: React.FC = () => {
                 width: { xs: '120px', md: '250px' },
                 height: 'auto',
               }}
+              whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
             />
           </MotionBannerBox>
         </Grid>
@@ -60,9 +64,10 @@ const PromoBanners: React.FC = () => {
           <MotionBannerBox
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
+            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <Box
+            <MotionImage
               component="img"
               src={bluetoothImg}
               alt="Bluetooth"
@@ -70,6 +75,7 @@ const PromoBanners: React.FC = () => {
                 width: { xs: '120px', md: '250px' },
                 height: 'auto',
               }}
+              whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
             />
 
             <Box

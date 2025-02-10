@@ -12,6 +12,7 @@ import {
   styled,
   Tabs,
   Tab,
+  Stack,
 } from '@mui/material';
 import { FavoriteBorder, ZoomOutMap } from '@mui/icons-material';
 
@@ -98,6 +99,7 @@ const ProductDetail: React.FC = () => {
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
+  const bgColors = ['#f44336', '#3f51b5', '#4caf50', '#ff9800', '#9c27b0'];
 
   return (
     <Box sx={{ maxWidth: 1200, mx: 'auto', py: 4, px: { xs: 2, md: 3 } }}>
@@ -273,17 +275,37 @@ const ProductDetail: React.FC = () => {
           </Box>
 
           <Box sx={{ mb: 3 }}>
-            <Typography variant="body2" sx={{ color: '#777' }}>
-              <strong>Categories :</strong>{' '}
-              <strong>{product.categories.join('  ')}</strong>
-            </Typography>
-            <Typography variant="body2" sx={{ color: '#777' }}>
-              <strong>Tags :</strong>{' '}
-              <strong>{product.tags.join('  ')}</strong>
-            </Typography>
-          </Box>
-        </Grid>
+          <Typography variant="body2" sx={{ color: '#777', mb: 1 }}>
+            <strong>Tags :</strong>
+          </Typography>
+          <Stack direction="row" spacing={1} flexWrap="wrap">
+              {product.tags.map((tag, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    backgroundColor: bgColors[index % bgColors.length],
+                    color: '#fff',
+                    px: 1.5,
+                    py: 0.5,
+                    borderRadius: '4px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    boxShadow: 2,
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    '&:hover': {
+                      transform: 'scale(1.05)',
+                      boxShadow: 4,
+                    },
+                    marginBottom: '4px',
+                  }}
+                >
+                  {tag}
+                </Box>
+              ))}
+          </Stack>
+        </Box>
       </Grid>
+    </Grid>
 
       <Box sx={{ mt: 4 }}>
         <Tabs value={tabValue} onChange={handleTabChange} centered>
