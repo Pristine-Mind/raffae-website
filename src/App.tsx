@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Components
 import Navbar from './components/Navbar/Navbar';
 import HeroSection from './components/HeroSection/HeroSection';
 import ProductShowcase from './components/ProductShowcase/ProductShowcase';
@@ -15,6 +14,7 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import Subscribe from './components/Subscribe/Subscribe';
 import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
+import LoginRegister from './components/LoginRegister';
 
 const Home: React.FC = () => {
   return (
@@ -47,6 +47,8 @@ const App: React.FC = () => {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/about-us' element={<AboutUs />} />
+        <Route path="/login" element={<LoginRegister defaultTab="login" />} />
+        <Route path="/register" element={<LoginRegister defaultTab="register" />} />
       </Routes>
 
       <Footer />
