@@ -80,18 +80,16 @@ const Navbar: React.FC = () => {
           gap: 4,
         }}
       >
-        {/* Link to Home */}
         <Typography
           variant="body1"
           sx={{ cursor: 'pointer', color: '#555' }}
           component={Link}
           to="/"
-          style={{ textDecoration: 'none' }} // remove underline
+          style={{ textDecoration: 'none' }}
         >
           Home
         </Typography>
 
-        {/* Link to Shop */}
         <Typography
           variant="body1"
           sx={{ cursor: 'pointer', color: '#555' }}

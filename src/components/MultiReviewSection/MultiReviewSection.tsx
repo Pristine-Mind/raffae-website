@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-// Import local images from the `assets` folder
 import avatar1 from '../../assets/avatar.jpg';
 import avatar2 from '../../assets/avatar.jpg';
 
@@ -14,21 +13,20 @@ interface Review {
   avatar: string;
 }
 
-// Provide the imported avatar files to each review
 const reviewsData: Review[] = [
   {
     id: 1,
     text: 'Lorem ipsum dolor sit amet...',
     name: 'Grace Alvarado',
     role: 'Customer',
-    avatar: avatar1, // Using the imported asset
+    avatar: avatar1,
   },
   {
     id: 2,
     text: 'Ut enim ad minim veniam...',
     name: 'John Doe',
     role: 'Client',
-    avatar: avatar2, // Another imported asset
+    avatar: avatar2,
   },
 ];
 
@@ -58,7 +56,6 @@ const MultiReviewSection: React.FC = () => {
                 boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
               }}
             >
-              {/* Use the imported image file */}
               <AvatarImage src={review.avatar} alt={review.name} />
 
               <Typography sx={{ mb: 1 }}>{review.text}</Typography>

@@ -100,7 +100,6 @@ const textVariants = {
 const HeroSection: React.FC = () => {
   return (
     <HeroSectionWrapper>
-      {/* Swiper Container */}
       <StyledSwiperContainer>
         <NavButton className="my-swiper-button-prev" sx={{ left: 16 }}>
           <svg
@@ -129,10 +128,8 @@ const HeroSection: React.FC = () => {
         </NavButton>
 
         <Swiper
-          // Import the modules
           modules={[Navigation, Pagination]}
           navigation={{
-            // Link to the custom buttons
             prevEl: '.my-swiper-button-prev',
             nextEl: '.my-swiper-button-next',
           }}

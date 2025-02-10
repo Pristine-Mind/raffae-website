@@ -77,7 +77,6 @@ const products: Product[] = [
   },
 ];
 
-// A pink discount badge in the top-right
 const DiscountBadge = styled(Box)(() => ({
   position: 'absolute',
   top: 8,
@@ -90,7 +89,6 @@ const DiscountBadge = styled(Box)(() => ({
   fontWeight: 'bold',
 }));
 
-// "New" badge (just below discount)
 const NewBadge = styled(Box)(() => ({
   position: 'absolute',
   top: 32,
@@ -108,7 +106,6 @@ const Shop: React.FC = () => {
   const [view, setView] = React.useState<'grid3' | 'grid4' | 'list'>('grid3');
   const navigate = useNavigate();
   const handleSelectOption = (productId: number) => {
-    // Go to /product/PRODUCT_ID
     navigate(`/product/${productId}`);
   };
 
@@ -124,7 +121,6 @@ const Shop: React.FC = () => {
     'Flower',
   ];
 
-  // Adjust grid item size based on selected view
   const getGridItemSize = () => {
     switch (view) {
       case 'grid3':
@@ -138,7 +134,6 @@ const Shop: React.FC = () => {
     }
   };
 
-  // Framer Motion Variants for container + items
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -162,7 +157,6 @@ const Shop: React.FC = () => {
   return (
     <Box sx={{ maxWidth: 1400, margin: '0 auto', py: 4, px: { xs: 2, md: 3 } }}>
       <Grid container spacing={4}>
-        {/* LEFT SIDEBAR */}
         <Grid item xs={12} md={3}>
           {/* Search */}
           <Box sx={{ mb: 4 }}>
@@ -186,7 +180,6 @@ const Shop: React.FC = () => {
             />
           </Box>
 
-          {/* Categories */}
           <Box>
             <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>
               Categories
@@ -202,9 +195,7 @@ const Shop: React.FC = () => {
           </Box>
         </Grid>
 
-        {/* RIGHT MAIN */}
         <Grid item xs={12} md={9}>
-          {/* Top bar: Sort dropdown, results count, layout icons */}
           <Box
             sx={{
               display: 'flex',
@@ -215,7 +206,6 @@ const Shop: React.FC = () => {
               gap: 2,
             }}
           >
-            {/* Sort dropdown + results info */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Select
                 value={sortOption}
@@ -231,7 +221,6 @@ const Shop: React.FC = () => {
               </Typography>
             </Box>
 
-            {/* Layout toggle icons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <IconButton
                 onClick={() => setView('grid3')}
@@ -266,7 +255,6 @@ const Shop: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Product Grid/List with Motion Container */}
           <Grid
             container
             spacing={3}
@@ -283,10 +271,9 @@ const Shop: React.FC = () => {
                 component={motion.div}
                 variants={itemVariants}
               >
-                {/* Product Card */}
                 <Box
                   component={motion.div}
-                  whileHover={{ scale: 1.02 }} // slight scale on hover
+                  whileHover={{ scale: 1.02 }}
                   sx={{
                     display: view === 'list' ? 'flex' : 'block',
                     position: 'relative',
@@ -301,11 +288,9 @@ const Shop: React.FC = () => {
                     },
                   }}
                 >
-                  {/* Discount + New badges */}
                   {product.discount && <DiscountBadge>{product.discount}</DiscountBadge>}
                   {product.isNew && <NewBadge>New</NewBadge>}
 
-                  {/* Product Image */}
                   <CardMedia
                     component="img"
                     src={product.image}
@@ -320,7 +305,6 @@ const Shop: React.FC = () => {
                     }}
                   />
 
-                  {/* Product Details */}
                   <Box
                     sx={{
                       display: 'flex',
@@ -329,7 +313,6 @@ const Shop: React.FC = () => {
                       width: '100%',
                     }}
                   >
-                    {/* Title + Wishlist */}
                     <Box
                       sx={{
                         display: 'flex',
@@ -346,7 +329,6 @@ const Shop: React.FC = () => {
                       </IconButton>
                     </Box>
 
-                    {/* Description */}
                     <Typography
                       variant="body2"
                       sx={{
@@ -362,7 +344,6 @@ const Shop: React.FC = () => {
                       {product.description}
                     </Typography>
 
-                    {/* Rating */}
                     <Rating
                       name={`rating-${product.id}`}
                       value={product.rating}
@@ -371,7 +352,6 @@ const Shop: React.FC = () => {
                       size="small"
                     />
 
-                    {/* Price */}
                     <Typography
                       variant="body1"
                       sx={{ fontWeight: 'bold', mt: 1 }}
@@ -390,7 +370,6 @@ const Shop: React.FC = () => {
                       </Typography>
                     </Typography>
 
-                    {/* Button */}
                     <Button
                       variant="outlined"
                       color="primary"
@@ -400,7 +379,7 @@ const Shop: React.FC = () => {
                         fontSize: '0.875rem',
                         alignSelf: 'flex-start',
                       }}
-                      onClick={() => handleSelectOption(3)} // or open a modal
+                      onClick={() => handleSelectOption(3)}
                     >
                       Select Option
                     </Button>

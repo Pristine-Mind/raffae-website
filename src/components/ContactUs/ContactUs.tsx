@@ -80,7 +80,6 @@ const ContactUs: React.FC = () => {
     <ThemeProvider theme={theme}>
       <Box sx={{ p: { xs: 2, md: 4 } }}>
         <Grid container spacing={4}>
-          {/* Left Section - Contact Info */}
           <Grid item xs={12} md={4}>
             <Box
               sx={{

@@ -11,7 +11,6 @@ const AboutSection: React.FC = () => {
         py: 8,
       }}
     >
-      {/* Small heading */}
       <Typography
         variant="subtitle1"
         sx={{ color: '#555', textTransform: 'uppercase', mb: 1 }}
@@ -19,7 +18,6 @@ const AboutSection: React.FC = () => {
         Who Are We
       </Typography>
       
-      {/* Main heading */}
       <Typography
         variant="h3"
         sx={{ fontWeight: 'bold', mb: 1, color: '#333' }}
@@ -27,7 +25,6 @@ const AboutSection: React.FC = () => {
         Welcome To Raffae
       </Typography>
 
-      {/* Underline */}
       <Box
         sx={{
           width: 60,
@@ -38,7 +35,6 @@ const AboutSection: React.FC = () => {
         }}
       />
 
-      {/* Paragraph / description */}
       <Typography
         variant="body1"
         sx={{ color: '#555', lineHeight: 1.7 }}

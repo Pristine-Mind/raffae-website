@@ -383,7 +383,7 @@ const ProductDetail: React.FC = () => {
           </Box>
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
-          <Box sx={{ p: 2, color: '#555', lineHeight: 1.6 }}>
+          <Box sx={{ p: 2, color: '#555', lineHeight: 1.6, fontWeight: 'bold' }}>
             <Typography variant="body2">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
               doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
