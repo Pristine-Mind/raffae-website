@@ -6,7 +6,9 @@ import {
   Rating,
   TextField,
   Button,
+  Paper,
   styled,
+  useTheme,
 } from '@mui/material';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { motion } from 'framer-motion';
@@ -31,19 +33,26 @@ const mockReviews = [
   },
 ];
 
-const ReviewItem = styled(Box)(({ theme }) => ({
+const ReviewCard = styled(Paper)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   marginBottom: theme.spacing(3),
+  padding: theme.spacing(2),
+  borderRadius: theme.shape.borderRadius,
 }));
 
-const AvatarImg = styled('img')({
+const AvatarImg = styled('img')(({ theme }) => ({
   width: 60,
   height: 60,
   borderRadius: '50%',
   objectFit: 'cover',
-  marginRight: 16,
-});
+  marginRight: theme.spacing(2),
+  boxShadow: theme.shadows[2],
+  transition: 'transform 0.2s ease-in-out',
+  '&:hover': {
+    transform: 'scale(1.1)',
+  },
+}));
 
 const reviewItemVariant = {
   hidden: { opacity: 0, y: 20 },
@@ -62,11 +71,12 @@ const formVariant = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
 };
 
-const MotionReviewItem = motion(ReviewItem);
+const MotionReviewItem = motion(ReviewCard);
 const MotionButton = motion(Button);
 const MotionGridItem = motion(Grid);
 
 const ReviewsTabContent: React.FC = () => {
+  const theme = useTheme();
   const [newRating, setNewRating] = useState<number | null>(5);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -77,7 +87,7 @@ const ReviewsTabContent: React.FC = () => {
   };
 
   return (
-    <Box sx={{ mt: 2 }}>
+    <Box sx={{ mt: 2, p: { xs: 1, md: 2 } }}>
       <Grid container spacing={4}>
         {/* Reviews List */}
         <MotionGridItem item xs={12} md={7} initial="hidden" animate="visible">
@@ -87,6 +97,7 @@ const ReviewsTabContent: React.FC = () => {
               custom={index}
               variants={reviewItemVariant}
               whileHover={{ scale: 1.02 }}
+              elevation={3}
             >
               <AvatarImg src={review.avatar} alt={review.name} />
 
@@ -111,6 +122,7 @@ const ReviewsTabContent: React.FC = () => {
                       precision={0.5}
                       readOnly
                       size="small"
+                      aria-label={`Rating: ${review.rating} out of 5`}
                     />
                   </Box>
                   <Box
@@ -119,7 +131,11 @@ const ReviewsTabContent: React.FC = () => {
                       alignItems: 'center',
                       cursor: 'pointer',
                       color: 'primary.main',
+                      '&:hover': { textDecoration: 'underline' },
                     }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Reply to ${review.name}'s review`}
                   >
                     <Typography variant="body2" sx={{ mr: 0.5 }}>
                       Reply
@@ -128,7 +144,7 @@ const ReviewsTabContent: React.FC = () => {
                   </Box>
                 </Box>
 
-                <Typography variant="body2" sx={{ mt: 1, color: '#555' }}>
+                <Typography variant="body2" sx={{ mt: 1, color: '#555', lineHeight: 1.5 }}>
                   {review.text}
                 </Typography>
               </Box>
@@ -156,11 +172,12 @@ const ReviewsTabContent: React.FC = () => {
               name="userRating"
               value={newRating}
               onChange={(_e, newVal) => setNewRating(newVal)}
+              aria-label="User rating"
             />
           </Box>
 
           <Box component="form" onSubmit={(e) => e.preventDefault()}>
-            <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+            <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
               <TextField
                 label="Name"
                 variant="outlined"
@@ -169,6 +186,7 @@ const ReviewsTabContent: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                inputProps={{ 'aria-label': 'Your name' }}
               />
               <TextField
                 label="Email"
@@ -179,6 +197,7 @@ const ReviewsTabContent: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 type="email"
+                inputProps={{ 'aria-label': 'Your email address' }}
               />
             </Box>
 
@@ -193,19 +212,20 @@ const ReviewsTabContent: React.FC = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
+              inputProps={{ 'aria-label': 'Your review message' }}
             />
 
             <MotionButton
               variant="contained"
               sx={{
                 textTransform: 'none',
-                backgroundColor: '#b76aff',
-                '&:hover': { backgroundColor: '#a64eff' },
+                backgroundColor: theme.palette.primary.main,
+                '&:hover': { backgroundColor: theme.palette.primary.dark },
               }}
               whileHover={{ scale: 1.05 }}
               onClick={handleSubmitReview}
             >
-              SUBMIT QUERY
+              Submit Review
             </MotionButton>
           </Box>
         </MotionGridItem>
